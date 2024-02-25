@@ -54,3 +54,44 @@ class DBstorage:
     
     def save(self):
         DBstorage.__session.commit()
+    
+    # ______________________________________________________________________________________
+    
+    def reload(self):
+        """Creates all tables created by the models and starts a session"""
+        Base.metadata.create_all(DBstorage.__engine)
+        Session = sessionmaker(DBstorage.__engine)
+        DBstorage.__session = Session()
+
+    # ______________________________________________________________________________________
+
+    def get_obj_by_id(self, cls, id):
+        Food_list = self.all(cls)
+
+        food, = [food for food in Food_list if food.id == id]
+        return food
+
+    # ______________________________________________________________________________________
+
+    def get_food_by_name(self, name):
+        search_result = []
+        Food_list = self.all(Food)
+        for food in Food_list:
+            if name in food.name:
+                search_result.append(food)
+        return search_result
+    
+    # ______________________________________________________________________________________
+
+    def append_ingredient_to_food(self, food_id, *ingredients_ids):
+        
+        food = self.get_obj_by_id(Food, food_id)
+
+        for ingredient_id in ingredients_ids:
+            ingredient = self.get_obj_by_id(Ingredient, ingredient_id)
+            food.ingredients.append(ingredient)
+
+    # ______________________________________________________________________________________
+
+    def close(self):
+        DBstorage.__session.close()
