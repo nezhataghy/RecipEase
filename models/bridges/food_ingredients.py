@@ -1,0 +1,10 @@
+#!/usr/bin/python3
+
+from sqlalchemy import Table, Column, ForeignKey, String, PrimaryKeyConstraint
+from models.Basemodel import Base
+
+
+Food_Ingredients = Table('Food_Ingredients', Base.metadata,
+                         Column('food_id', String(200), ForeignKey('Food.__id')),
+                         Column('ingredients_id', String(200), ForeignKey('Ingredients.__id')),
+                         PrimaryKeyConstraint('food_id', 'ingredients_id'))
