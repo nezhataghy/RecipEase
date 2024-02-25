@@ -1,17 +1,18 @@
 #!/usr/bin/python3
 """Modules that defines Recipe class that will represent the Recipe table in the database."""
 
-from models.Basemodel import BaseModel
+from models.Basemodel import BaseModel, Base as ClassMapper
+from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy.orm import relationship
 
-class Recipe(BaseModel):
-    """"Class that represents the Recipe table in our db"""
 
-    # Table Columns
-    content = ""
-    food_id = ""
+class Recipe(BaseModel, ClassMapper):
+    """"Recipe class defines the Recipes table in the database. Inherits from BaseModel
+    BaseModel: Representing common attributes and methods for Recipe class."""
 
-    def __init__(self, content, food_id):
-        """Temporary constructor to simulate the data"""
-        super().__init__()
-        self.content = content
-        self.food_id = food_id
+    __tablename__ = "Recipes"
+
+    # Define the columns of the table. Each class attribute represents a column in the tables.
+    content = Column(String(700), unique=True, nullable=False)
+    food_id = Column(String(200), ForeignKey("Food.__id"), nullable=False)
+    

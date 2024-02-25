@@ -1,18 +1,18 @@
 #!/usr/bin/python3
 """This module defines an Ingredient class that will represent the Ingredient table in the database."""
 
-from models.Basemodel import BaseModel
+from models.Basemodel import BaseModel, Base as ClassMapper
+from sqlalchemy import Column, String, Float
+from sqlalchemy.orm import relationship
 
-class Ingredient(BaseModel):
-    """"Class that represents the ingredient table in our db"""
+class Ingredient(BaseModel, ClassMapper):
+    """"Ingredient class defines the Ingredients table in the database. Inherits from BaseModel
+    BaseModel: Representing common attributes and methods for Ingredient class."""
 
-    # Table Columns
-    name = ""
-    food_id = ""
+    __tablename__ = 'Ingredients'
 
-    def __init__(self, name, food_id):
-        """Temporary constructor to simulate the data"""
-        super().__init__()
-        self.name = name
-        self.food_id = food_id
-        
+    # Define the columns of the table. Each class attribute represents a column in the tables.
+    name = Column(String(200), unique=True, nullable=False)
+    quantity = Column(String(15), nullable=False)
+    food = relationship('Food', secondary='Food_Ingredients', 
+                        back_populates='ingredients', viewonly=False)
