@@ -4,23 +4,33 @@
 
 from uuid import uuid4
 from datetime import datetime
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, String, DateTime
+
+
+Base = declarative_base()
 
 
 class BaseModel:
     """`BaseModel` class representing common attributes and methods."""
+    
+    # Fields that will be inherited by other models
+    __id = Column('__id',String(200), primary_key=True)
+    __created_at = Column('__created_at', DateTime, nullable=False)
+    __updated_at = Column('__updated_at', DateTime, nullable=False, default=datetime.utcnow())
 
     def __init__(self):
-        self.__id = str(uuid4())
-        self.__created_at = datetime.utcnow()
+        """Constructor function defines the common attributes for each subclass instance"""
+        self.id = None
+        self.created_at = None
         self.updated_at = datetime.utcnow()
 
     # _____________________________________________________________________________________
 
     def __str__(self):
-        f"""String representation for Object of type {self.__class__.__name__}"""
+        f"""String Representation for object of type {self.__class__.__name__}"""
 
-        obj_repr = f"{self.__class__.__name__}: ({self.id}) - {self.to_dict()}"
-        return obj_repr
+        return f"{self.__class__.__name__}: ({self.id}) - {self.__dict__}"
 
     # _____________________________________________________________________________________
 
@@ -30,8 +40,11 @@ class BaseModel:
 
     @id.setter
     def id(self, _):
-        print("Can't set attribute 'id'")
-        pass
+        if self.id is None:
+            self.__id = str(uuid4())
+        else:
+            print("Can't set attribute 'id'")
+            pass
 
     # _____________________________________________________________________________________
 
@@ -41,8 +54,11 @@ class BaseModel:
 
     @created_at.setter
     def created_at(self, _):
-        print("Can't set attribute 'created_at'")
-        pass
+        if self.created_at is None:
+            self.__created_at = datetime.utcnow()
+        else:
+            print("Can't set attribute 'created_at'")
+            pass
 
     # _____________________________________________________________________________________
 
@@ -58,7 +74,11 @@ class BaseModel:
 
     def save(self):
         """Updates the datetime and saves the instance to the storage."""
+        from models import storage
         self.updated_at = datetime.utcnow()
+        storage.add(self)
+        storage.save()
+
     # _____________________________________________________________________________________
         
     def to_dict(self):
@@ -66,14 +86,20 @@ class BaseModel:
 
         date_format = "%d-%m-%YT%I:%M:%S%p"
 
+        # Change the private attribute's default name (from '_BaseModel__.att' to '__.att')
         obj_dict = {
             key.replace("_BaseModel__", '__'): value 
             for key, value in self.__dict__.items()
         }
 
+        # Change datetime object to string format
         obj_dict['__created_at'] = datetime.strftime(self.created_at, date_format)
         obj_dict['__updated_at'] = datetime.strftime(self.updated_at, date_format)
-        obj_dict['__class__'] = self.__class__.__name__
+        # obj_dict['__class__'] = self.__class__.__name__
+        
+        if '_sa_instance_state' in obj_dict:
+            del obj_dict['_sa_instance_state']
+
 
         return obj_dict
 
@@ -81,4 +107,5 @@ class BaseModel:
 
     def delete(self):
         """Deletes a record (instance) from the database"""
-        pass
+        from models import storage
+        storage.delete(self)
