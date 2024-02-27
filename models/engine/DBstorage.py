@@ -68,8 +68,11 @@ class DBstorage:
     def get_obj_by_id(self, cls, id):
         Food_list = self.all(cls)
 
-        food, = [food for food in Food_list if food.id == id]
-        return food
+        try:
+            food, = [food for food in Food_list if food.id == id]
+            return food
+        except ValueError:
+            return None            
 
     # ______________________________________________________________________________________
 
@@ -83,13 +86,25 @@ class DBstorage:
     
     # ______________________________________________________________________________________
 
-    def append_ingredient_to_food(self, food_id, *ingredients_ids):
-        
-        food = self.get_obj_by_id(Food, food_id)
+    def append_ingredient_to_food(self, food_id, ingredient_id, quantity):
+        """
+        Appends an ingredient to a food.
+        Args:
+            food_id: Food id to gets Food object
+            ingredient_id: ingredient_id gets an Ingredient object
+            quantity: the quantity of the ingredient that should be added to the food
+        """
+        from models.bridges.food_ingredients import Food_Ingredients
+        from sqlalchemy.sql import bindparam
 
-        for ingredient_id in ingredients_ids:
-            ingredient = self.get_obj_by_id(Ingredient, ingredient_id)
-            food.ingredients.append(ingredient)
+        query = Food_Ingredients.insert().values(food_id=bindparam('food_id'), 
+                                              ingredients_id=bindparam('ingredient_id'), 
+                                              quantity=bindparam('quantity'))
+        params = {'food_id': food_id, 'ingredient_id': ingredient_id, 'quantity': quantity}
+
+        DBstorage.__session.execute(query, params)
+        DBstorage.__session.commit()
+
 
     # ______________________________________________________________________________________
 
