@@ -31,16 +31,9 @@ class DBstorage:
         """Adds a record to a table.
         obj: instance that will be added to the table.
         """
-        
+
         DBstorage.__session.add(obj)
 
-    # ______________________________________________________________________________________
-    
-    def delete(self, obj):
-        """Deletes a record from a table.
-        obj: instance that will be deleted from the table."""
-        DBstorage.__session.delete(obj)
-    
     # ______________________________________________________________________________________
     
     def all(self, cls):
@@ -52,16 +45,34 @@ class DBstorage:
     
     # ______________________________________________________________________________________
     
-    def save(self):
-        DBstorage.__session.commit()
-    
+    def all_food(self):
+        food = self.all(Food)
+
+        food_map = []
+        for f in food:
+            food_map.append(self.get_food(f.id))
+
+        return food_map
+
     # ______________________________________________________________________________________
-    
-    def reload(self):
-        """Creates all tables created by the models and starts a session"""
-        Base.metadata.create_all(DBstorage.__engine)
-        Session = sessionmaker(DBstorage.__engine)
-        DBstorage.__session = Session()
+
+    def get_food(self, food_id):
+        food = self.get_obj_by_id(Food, food_id)
+
+        food_map = {}
+
+        food_map.update({
+            'name': food.name,
+            'image': food.image,
+            'category': food.category,
+            'recipe': food.recipe[0].content,
+            'ingredients': [
+                {
+                ing.to_dict().get('name'),
+                ing.to_dict().get('__id')} for ing in food.ingredients]
+        })
+
+        return food_map
 
     # ______________________________________________________________________________________
 
@@ -78,10 +89,16 @@ class DBstorage:
 
     def get_food_by_name(self, name):
         search_result = []
-        Food_list = self.all(Food)
-        for food in Food_list:
-            if name in food.name:
-                search_result.append(food)
+
+        food_list = self.all(Food)
+        
+        if not food_list:
+            return None
+
+        search_result = [search_result.append(food) for food in food_list if name in food.name]
+        # for food in food_list:
+        #     if name in food.name:
+        #         search_result.append(food)
         return search_result
     
     # ______________________________________________________________________________________
@@ -103,8 +120,29 @@ class DBstorage:
         params = {'food_id': food_id, 'ingredient_id': ingredient_id, 'quantity': quantity}
 
         DBstorage.__session.execute(query, params)
+
+        food = self.get_obj_by_id(Food, food_id)
+        food.save()
+
+    # ______________________________________________________________________________________
+
+    def save(self):
         DBstorage.__session.commit()
 
+    # ______________________________________________________________________________________
+    
+    def reload(self):
+        """Creates all tables created by the models and starts a session"""
+        Base.metadata.create_all(DBstorage.__engine)
+        Session = sessionmaker(DBstorage.__engine)
+        DBstorage.__session = Session()
+
+    # ______________________________________________________________________________________
+
+    def delete(self, obj):
+        """Deletes a record from a table.
+        obj: instance that will be deleted from the table."""
+        DBstorage.__session.delete(obj)
 
     # ______________________________________________________________________________________
 
