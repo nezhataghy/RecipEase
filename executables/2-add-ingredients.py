@@ -34,8 +34,7 @@ ingredient.updated_at = datetime.utcnow()
 print('-----------------ingredient updated_at check-----------------')
 print(ingredient.updated_at)
 
-ingredient.name = 'Flour'
-ingredient.quantity = '1/8 kg'
+ingredient.name = 'Potato'
 
 print('-----------------STR-----------------')
 print(ingredient)

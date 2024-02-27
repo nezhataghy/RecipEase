@@ -43,7 +43,7 @@ recipe.content = '''1- Preheat the oven to 180°C.
 7- Let cool before serving.
 8- Enjoy!
 '''
-recipe.food_id = 'b3940ecc-a702-4122-8f7c-ba63c3b9e2d0'
+recipe.food_id = 'e1745c56-86e4-4f5b-9884-48551bbb1059'
 
 print('-----------------STR-----------------')
 print(recipe)
