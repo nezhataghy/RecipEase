@@ -13,6 +13,5 @@ class Ingredient(BaseModel, ClassMapper):
 
     # Define the columns of the table. Each class attribute represents a column in the tables.
     name = Column(String(200), unique=True, nullable=False)
-    quantity = Column(String(15), nullable=False)
     food = relationship('Food', secondary='Food_Ingredients', 
                         back_populates='ingredients', viewonly=False)

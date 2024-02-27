@@ -75,8 +75,13 @@ class BaseModel:
     def save(self):
         """Updates the datetime and saves the instance to the storage."""
         from models import storage
+        from models.Food import Food
         self.updated_at = datetime.utcnow()
-        storage.add(self)
+        food = storage.get_obj_by_id(Food, self.id)
+
+        if food is None:
+            storage.add(self)
+            
         storage.save()
 
     # _____________________________________________________________________________________
@@ -109,3 +114,4 @@ class BaseModel:
         """Deletes a record (instance) from the database"""
         from models import storage
         storage.delete(self)
+        storage.save()
