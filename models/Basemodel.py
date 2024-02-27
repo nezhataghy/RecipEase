@@ -77,6 +77,7 @@ class BaseModel:
         from models import storage
         from models.Food import Food
         self.updated_at = datetime.utcnow()
+
         food = storage.get_obj_by_id(Food, self.id)
 
         if food is None:

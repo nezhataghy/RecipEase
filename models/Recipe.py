@@ -3,7 +3,6 @@
 
 from models.Basemodel import BaseModel, Base as ClassMapper
 from sqlalchemy import Column, String, ForeignKey
-from sqlalchemy.orm import relationship
 
 
 class Recipe(BaseModel, ClassMapper):

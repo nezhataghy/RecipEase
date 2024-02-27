@@ -16,6 +16,8 @@ class Food(BaseModel, ClassMapper):
     category = Column(String(200), nullable=False)
     image = Column(String(200), default='No image')
     ingredients = relationship("Ingredient", secondary='Food_Ingredients', 
-                               back_populates='food', viewonly=False)
+                               back_populates='food', viewonly=False, 
+                               cascade='all, delete-orphan', 
+                               single_parent=True)
     recipe = relationship("Recipe", cascade='all, delete-orphan', backref='food')
     

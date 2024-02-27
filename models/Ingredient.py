@@ -2,7 +2,7 @@
 """This module defines an Ingredient class that will represent the Ingredient table in the database."""
 
 from models.Basemodel import BaseModel, Base as ClassMapper
-from sqlalchemy import Column, String, Float
+from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
 class Ingredient(BaseModel, ClassMapper):
@@ -14,4 +14,5 @@ class Ingredient(BaseModel, ClassMapper):
     # Define the columns of the table. Each class attribute represents a column in the tables.
     name = Column(String(200), unique=True, nullable=False)
     food = relationship('Food', secondary='Food_Ingredients', 
-                        back_populates='ingredients', viewonly=False)
+                        back_populates='ingredients', viewonly=False,
+                               cascade='all, delete-orphan', single_parent=True)
