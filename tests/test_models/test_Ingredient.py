@@ -4,13 +4,18 @@
 import unittest
 from models.Ingredient import Ingredient
 from models.Basemodel import BaseModel
-
+from models import storage
 
 class Test_Ingredient(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.ingredient = Ingredient()
         cls.ingredient.name = 'Carrot'
+    
+    @classmethod
+    def tearDownClass(cls):
+        cls.ingredient.delete()
+        storage.close()
 
     """      _____________Testing attributes getters_____________        """
     # ID
@@ -35,7 +40,6 @@ class Test_Ingredient(unittest.TestCase):
         self.ingredient.save()
         ingredient = storage.get_obj_by_id(Ingredient, self.ingredient.id)
         self.assertEqual(ingredient.id, self.ingredient.id)
-        ingredient.delete()
     
     # ____________________________________________________________________________________
 
