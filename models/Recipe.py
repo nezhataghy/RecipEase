@@ -14,4 +14,3 @@ class Recipe(BaseModel, ClassMapper):
     # Define the columns of the table. Each class attribute represents a column in the tables.
     content = Column(String(700), unique=True, nullable=False)
     food_id = Column(String(200), ForeignKey("Food.__id"), nullable=False)
-    

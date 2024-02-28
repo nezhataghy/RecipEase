@@ -20,4 +20,3 @@ class Food(BaseModel, ClassMapper):
                                cascade='all, delete-orphan', 
                                single_parent=True)
     recipe = relationship("Recipe", cascade='all, delete-orphan', backref='food')
-    
