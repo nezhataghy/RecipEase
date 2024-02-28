@@ -15,7 +15,7 @@ class BaseModel:
     """`BaseModel` class representing common attributes and methods."""
     
     # Fields that will be inherited by other models
-    __id = Column('__id',String(200), primary_key=True)
+    __id = Column('__id', String(200), primary_key=True)
     __created_at = Column('__created_at', DateTime, nullable=False)
     __updated_at = Column('__updated_at', DateTime, nullable=False, default=datetime.utcnow())
 
@@ -73,17 +73,23 @@ class BaseModel:
     # _____________________________________________________________________________________
 
     def save(self):
-        """Updates the datetime and saves the instance to the storage."""
+        """
+        Updates the datetime and saves the instance to the storage.
+        If something changed to the food, it will be saved and updated in the database
+        Otherwise, it will be added and saved in the database.
+        """
         from models import storage
-        from models.Food import Food
+        from sqlalchemy.exc import IntegrityError
         self.updated_at = datetime.utcnow()
-
-        food = storage.get_obj_by_id(Food, self.id)
-
-        if food is None:
+        
+        try:
             storage.add(self)
-            
-        storage.save()
+            storage.save()
+        except IntegrityError:
+            if self.__class__.__name__ == 'Recipe':
+                print(f'The recipe already exists in the {self.__class__.__name__}s table')
+            else:
+                print(f'"{self.name}" already exists in the {self.__class__.__name__} table')
 
     # _____________________________________________________________________________________
         
@@ -101,11 +107,9 @@ class BaseModel:
         # Change datetime object to string format
         obj_dict['__created_at'] = datetime.strftime(self.created_at, date_format)
         obj_dict['__updated_at'] = datetime.strftime(self.updated_at, date_format)
-        # obj_dict['__class__'] = self.__class__.__name__
         
         if '_sa_instance_state' in obj_dict:
             del obj_dict['_sa_instance_state']
-
 
         return obj_dict
 
