@@ -3,7 +3,7 @@ from models import storage
 from models.Food import Food
 
 
-food = storage.all()
+food = storage.all(Food)
 
 print('----------------Test all----------------')
 for f in food:
@@ -11,7 +11,7 @@ for f in food:
     
 print('----------------Test food by id----------------')
 
-food1 = storage.get_food_by_id("26734a42-e52e-4062-b469-c4ce32ec31b1")
+food1 = storage.get_obj_by_id(Food, '04783b33-52f3-414b-b6b6-047a92557532')
 print(food1)
 
 print('----------------Test food by name----------------')

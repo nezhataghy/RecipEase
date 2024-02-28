@@ -34,7 +34,7 @@ ingredient.updated_at = datetime.utcnow()
 print('-----------------ingredient updated_at check-----------------')
 print(ingredient.updated_at)
 
-ingredient.name = 'Potato'
+ingredient.name = 'Harissa'
 
 print('-----------------STR-----------------')
 print(ingredient)

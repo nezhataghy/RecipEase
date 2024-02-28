@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 from models.Basemodel import BaseModel
-from datetime import datetime
 
 base = BaseModel()
 

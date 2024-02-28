@@ -34,8 +34,8 @@ food.updated_at = datetime.utcnow()
 print('-----------------Food updated_at check-----------------')
 print(food.updated_at)
 
-food.name = 'Fried Chicken'
-food.category = 'Chicken'
+food.name = 'Kofta Meat'
+food.category = 'meat'
 
 print('-----------------STR-----------------')
 print(food)
