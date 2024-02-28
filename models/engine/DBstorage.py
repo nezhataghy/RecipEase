@@ -50,27 +50,51 @@ class DBstorage:
 
         food_map = []
         for f in food:
-            food_map.append(self.get_food(f.id))
+            food_map.append(self.get_meal(f.id))
 
         return food_map
 
     # ______________________________________________________________________________________
 
-    def get_food(self, food_id):
-        food = self.get_obj_by_id(Food, food_id)
+    def get_meal(self, meal_id):
+        from models.bridges.food_ingredients import Food_Ingredients
+        from sqlalchemy import select, Column
+        from sqlalchemy.sql import bindparam
 
-        food_map = {}
+        meal = self.get_obj_by_id(Food, meal_id)
+        
+        # Bind the recipe and ingredients to the food object
+        # if not meal.recipe or not meal.ingredients:
+        #     return meal.to_dict()
 
-        food_map.update({
-            'name': food.name,
-            'image': food.image,
-            'category': food.category,
-            'recipe': food.recipe[0].content,
-            'ingredients': [
-                {
-                ing.to_dict().get('name'),
-                ing.to_dict().get('__id')} for ing in food.ingredients]
-        })
+        if meal.recipe:
+            meal.recipe[0]
+        
+        if meal.ingredients:
+            meal.ingredients
+
+        food_map = meal.to_dict()
+
+        if meal.recipe:
+            # Update the recipe property with the dict of recipe object
+            food_map['recipe'] = food_map['recipe'][0].to_dict()
+            del food_map.get('recipe')['food_id']
+
+        if meal.ingredients:
+            # Update ingredients property with the dict of each ingredient object
+            for i, ing in enumerate(food_map['ingredients']):
+                ing_id = ing.id
+                quantity_query = select(Column('quantity')).where(
+                    Food_Ingredients.c.food_id == bindparam('meal_id') and 
+                    Food_Ingredients.c.ingredients_id == bindparam('ing_id'))
+            
+                params = {'meal_id': meal_id, 'ing_id': ing_id}
+
+                query_result = DBstorage.__session.execute(quantity_query, params).all()
+                ing_dict = ing.__dict__
+                ing_dict['quantity'] = query_result[i][0]
+
+            food_map['ingredients'] = [ing.to_dict() for ing in meal.ingredients]
 
         return food_map
 
@@ -95,10 +119,11 @@ class DBstorage:
         if not food_list:
             return None
 
-        search_result = [search_result.append(food) for food in food_list if name in food.name]
-        # for food in food_list:
-        #     if name in food.name:
-        #         search_result.append(food)
+        # search_result = [search_result.append(food) for food in food_list if name in food.name]
+        for food in food_list:
+            if name in food.name:
+                search_result.append(food)
+        
         return search_result
     
     # ______________________________________________________________________________________
@@ -113,20 +138,25 @@ class DBstorage:
         """
         from models.bridges.food_ingredients import Food_Ingredients
         from sqlalchemy.sql import bindparam
+        from sqlalchemy.exc import IntegrityError
+        
+        try:
+            query = Food_Ingredients.insert().values(food_id=bindparam('food_id'), 
+                                                ingredients_id=bindparam('ingredient_id'), 
+                                                quantity=bindparam('quantity'))
+            params = {'food_id': food_id, 'ingredient_id': ingredient_id, 'quantity': quantity}
 
-        query = Food_Ingredients.insert().values(food_id=bindparam('food_id'), 
-                                              ingredients_id=bindparam('ingredient_id'), 
-                                              quantity=bindparam('quantity'))
-        params = {'food_id': food_id, 'ingredient_id': ingredient_id, 'quantity': quantity}
+            DBstorage.__session.execute(query, params)
 
-        DBstorage.__session.execute(query, params)
-
-        food = self.get_obj_by_id(Food, food_id)
-        food.save()
+            food = self.get_obj_by_id(Food, food_id)
+            food.save()
+        except IntegrityError:
+            print("The ingredient is already appended to the food!")
 
     # ______________________________________________________________________________________
 
     def save(self):
+        """Applies changes to the database."""
         DBstorage.__session.commit()
 
     # ______________________________________________________________________________________
