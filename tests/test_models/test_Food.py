@@ -13,6 +13,7 @@ class Test_Food(unittest.TestCase):
         cls.food = Food()
         cls.food.name = "Couscous with chicken"
         cls.food.category = "Couscous"
+        cls.food.save()
 
     @classmethod
     def tearDownClass(cls):
@@ -37,7 +38,6 @@ class Test_Food(unittest.TestCase):
     def test_food_saving(self):
         from models import storage
 
-        self.food.save()
         food = storage.get_obj_by_id(Food, self.food.id)
         self.assertEqual(food.id, self.food.id)
     

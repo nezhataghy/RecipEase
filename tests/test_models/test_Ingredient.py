@@ -11,6 +11,7 @@ class Test_Ingredient(unittest.TestCase):
     def setUpClass(cls):
         cls.ingredient = Ingredient()
         cls.ingredient.name = 'Carrot'
+        cls.ingredient.save()
     
     @classmethod
     def tearDownClass(cls):
@@ -35,9 +36,6 @@ class Test_Ingredient(unittest.TestCase):
     def test_ingredient_saving(self):
         from models import storage
 
-        self.ingredient.name = "Couscous with chicken"
-        self.ingredient.category = "Couscous"
-        self.ingredient.save()
         ingredient = storage.get_obj_by_id(Ingredient, self.ingredient.id)
         self.assertEqual(ingredient.id, self.ingredient.id)
     

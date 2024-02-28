@@ -5,27 +5,28 @@ import unittest
 from models.Food import Food
 from models.Recipe import Recipe
 from models.Ingredient import Ingredient
-
+from models import storage
+# from sqlalchemy.exc import 
 
 class Test_Food_Relation(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        pass
         cls.food = Food()
+        cls.food.name = "Rice with speices"
+        cls.food.category = "Rice"
+        cls.food.save()
         cls.ingredient1 = Ingredient()
+        cls.ingredient1.name = "Carrot"
+        cls.ingredient1.save()
         cls.ingredient2 = Ingredient()
+        cls.ingredient2.name = "Nuts"
+        cls.ingredient2.save()
         cls.recipe = Recipe()
         cls.recipe.content = '1- add salt\n2- add pepper\n3- add water'
         cls.recipe.food_id = cls.food.id
-        cls.food.name = "Rice with speices"
-        cls.food.category = "Rice"
-        cls.ingredient1.name = "Carrot"
-        cls.ingredient2.name = "Tomato"
-        cls.food.save()
         cls.recipe.save()
-        cls.ingredient1.save()
-        cls.ingredient2.save()
+        # storage
     
     @classmethod
     def tearDownClass(cls):
@@ -52,6 +53,8 @@ class Test_Food_Relation(unittest.TestCase):
         self.assertEqual(len(self.food.recipe), 1)
         self.assertEqual(len(self.recipe.content), len(self.food.recipe[0].content))
     
+    def test_duplicate_err(self):
+        pass
 
 if __name__ == '__main__':
     unittest.main()
