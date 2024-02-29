@@ -4,6 +4,8 @@
 from models.Basemodel import BaseModel, Base as ClassMapper
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
+from models.bridges.food_ingredients import Food_Ingredients
+
 
 class Ingredient(BaseModel, ClassMapper):
     """"Ingredient class defines the Ingredients table in the database. Inherits from BaseModel

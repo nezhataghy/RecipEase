@@ -6,6 +6,7 @@ from uuid import uuid4
 from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, DateTime
+from sqlalchemy import inspect
 
 
 Base = declarative_base()
@@ -19,11 +20,23 @@ class BaseModel:
     __created_at = Column('__created_at', DateTime, nullable=False)
     __updated_at = Column('__updated_at', DateTime, nullable=False, default=datetime.utcnow())
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         """Constructor function defines the common attributes for each subclass instance"""
+
         self.id = None
         self.created_at = None
         self.updated_at = datetime.utcnow()
+
+        if kwargs:
+            from models.Food import Food
+            from models.Ingredient import Ingredient
+            from models.Recipe import Recipe
+            from models.bridges.food_ingredients import Food_Ingredients
+
+            cls = eval(self.__class__.__name__)
+            for k, v in kwargs.items():
+                if k in inspect(cls).columns.keys():
+                    setattr(self, k, v)
 
     # _____________________________________________________________________________________
 
@@ -79,13 +92,13 @@ class BaseModel:
         Otherwise, it will be added and saved in the database.
         """
         from models import storage
-        from sqlalchemy.exc import IntegrityError
+        from sqlalchemy.exc import IntegrityError, PendingRollbackError
         self.updated_at = datetime.utcnow()
         
         try:
             storage.add(self)
             storage.save()
-        except IntegrityError:
+        except (IntegrityError, PendingRollbackError):
             if self.__class__.__name__ == 'Recipe':
                 print(f'The recipe already exists in the {self.__class__.__name__}s table')
             else:

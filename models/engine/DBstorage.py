@@ -8,8 +8,8 @@ from models.Food import Food
 from models.Basemodel import BaseModel
 from models.Ingredient import Ingredient
 from models.Recipe import Recipe
-from models.bridges import food_ingredients
 from models.Basemodel import Base
+from models.bridges.food_ingredients import Food_Ingredients
 
 
 class DBstorage:
@@ -107,7 +107,8 @@ class DBstorage:
             food, = [food for food in Food_list if food.id == id]
             return food
         except ValueError:
-            return None            
+            return None
+                      
 
     # ______________________________________________________________________________________
 
@@ -139,6 +140,18 @@ class DBstorage:
         from models.bridges.food_ingredients import Food_Ingredients
         from sqlalchemy.sql import bindparam
         from sqlalchemy.exc import IntegrityError
+
+        try:
+            ingredient = self.get_obj_by_id(Ingredient, ingredient_id)
+            food = self.get_obj_by_id(Food, food_id)
+            if not ingredient or not food:
+                raise ValueError
+        except ValueError:
+            if not food:
+                print("Food not found in Food table")
+            if not ingredient:
+                print("Ingredient not found in Ingredients table")
+            return
         
         try:
             query = Food_Ingredients.insert().values(food_id=bindparam('food_id'), 
@@ -147,9 +160,39 @@ class DBstorage:
             params = {'food_id': food_id, 'ingredient_id': ingredient_id, 'quantity': quantity}
 
             DBstorage.__session.execute(query, params)
-
-            food = self.get_obj_by_id(Food, food_id)
             food.save()
+
+        except IntegrityError:
+            print("The ingredient is already appended to the food!")
+
+    # ______________________________________________________________________________________
+
+    def update_food_ingredient(self, food_id, ingredient_id, quantity):
+        """Updates food_ingredient's ingredient_id or quantity"""
+        from sqlalchemy.exc import IntegrityError
+        from models.bridges.food_ingredients import Food_Ingredients
+        from sqlalchemy import update, Column
+
+        try:
+            ingredient = self.get_obj_by_id(Ingredient, ingredient_id)
+            food = self.get_obj_by_id(Food, food_id)
+            if not ingredient or not food:
+                raise ValueError
+        except ValueError:
+            if not food:
+                print("Food not found in Food table")
+            if not ingredient:
+                print("Ingredient not found in Ingredients table")
+            return
+
+        try:    
+            query_update = Food_Ingredients.update().values(quantity=quantity
+            ).where(Food_Ingredients.c.food_id == food_id and 
+                    Food_Ingredients.c.ingredients_id == ingredient_id)
+
+            DBstorage.__session.execute(query_update)
+            food.save()
+
         except IntegrityError:
             print("The ingredient is already appended to the food!")
 
