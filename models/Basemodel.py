@@ -21,7 +21,7 @@ class BaseModel:
     __updated_at = Column('__updated_at', DateTime, nullable=False, default=datetime.utcnow())
 
     def __init__(self, **kwargs):
-        """Constructor function defines the common attributes for each subclass instance"""
+        """Constructor function defines the common attributes/methods for each subclass instance"""
 
         self.id = None
         self.created_at = None
@@ -35,8 +35,12 @@ class BaseModel:
 
             cls = eval(self.__class__.__name__)
             for k, v in kwargs.items():
+                # If the key is a column in the table, set the value to the instance attribute,
+                # Otherwise, raise an AttributeError
                 if k in inspect(cls).columns.keys():
                     setattr(self, k, v)
+                else:
+                    raise AttributeError(f"Attribute '{k}' not found in {self.__class__.__name__}")
 
     # _____________________________________________________________________________________
 
@@ -53,11 +57,11 @@ class BaseModel:
 
     @id.setter
     def id(self, _):
+        # If it is new instance set an id otherwise, raise AttributeError
         if self.id is None:
             self.__id = str(uuid4())
         else:
-            print("Can't set attribute 'id'")
-            pass
+            raise AttributeError
 
     # _____________________________________________________________________________________
 
@@ -67,11 +71,11 @@ class BaseModel:
 
     @created_at.setter
     def created_at(self, _):
+        # If it is new instance set a created_at attribute otherwise, raise AttributeError
         if self.created_at is None:
             self.__created_at = datetime.utcnow()
         else:
-            print("Can't set attribute 'created_at'")
-            pass
+            raise AttributeError
 
     # _____________________________________________________________________________________
 
@@ -92,18 +96,25 @@ class BaseModel:
         Otherwise, it will be added and saved in the database.
         """
         from models import storage
-        from sqlalchemy.exc import IntegrityError, PendingRollbackError
+        from sqlalchemy.exc import IntegrityError
+        
+
         self.updated_at = datetime.utcnow()
         
         try:
             storage.add(self)
             storage.save()
-        except (IntegrityError, PendingRollbackError):
-            if self.__class__.__name__ == 'Recipe':
+            
+        except IntegrityError as err:
+            if 'cannot be null' in str(err):
+                print('Some attributes are missing in the table')
+            elif self.__class__.__name__ == 'Recipe':
                 print(f'The recipe already exists in the {self.__class__.__name__}s table')
             else:
                 print(f'"{self.name}" already exists in the {self.__class__.__name__} table')
-
+            # reload the storage to prevent the Rollback error.
+            storage.reload()
+            
     # _____________________________________________________________________________________
         
     def to_dict(self):

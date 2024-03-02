@@ -2,7 +2,7 @@
 """This module defines class that will represent the database management"""
 
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 from os import getenv
 from models.Food import Food
 from models.Basemodel import BaseModel
@@ -23,7 +23,7 @@ class DBstorage:
         pwd = getenv('RCP_pwd')
         host = getenv('RCP_host')
         db = getenv('RCP_db')
-        DBstorage.__engine = create_engine(f'mysql+mysqldb://{usr}:{pwd}@{host}:3306/{db}')
+        self.__engine = create_engine(f'mysql+mysqldb://{usr}:{pwd}@{host}:3306/{db}')
 
     # ______________________________________________________________________________________
     
@@ -32,7 +32,7 @@ class DBstorage:
         obj: instance that will be added to the table.
         """
 
-        DBstorage.__session.add(obj)
+        self.__session.add(obj)
 
     # ______________________________________________________________________________________
     
@@ -41,7 +41,7 @@ class DBstorage:
         # food.ingredients
         # mapping them to the food object
         # get food
-        return DBstorage.__session.query(cls).all()
+        return self.__session.query(cls).all()
     
     # ______________________________________________________________________________________
     
@@ -90,7 +90,7 @@ class DBstorage:
             
                 params = {'meal_id': meal_id, 'ing_id': ing_id}
 
-                query_result = DBstorage.__session.execute(quantity_query, params).all()
+                query_result = self.__session.execute(quantity_query, params).all()
                 ing_dict = ing.__dict__
                 ing_dict['quantity'] = query_result[i][0]
 
@@ -159,7 +159,7 @@ class DBstorage:
                                                 quantity=bindparam('quantity'))
             params = {'food_id': food_id, 'ingredient_id': ingredient_id, 'quantity': quantity}
 
-            DBstorage.__session.execute(query, params)
+            self.__session.execute(query, params)
             food.save()
 
         except IntegrityError:
@@ -190,7 +190,7 @@ class DBstorage:
             ).where(Food_Ingredients.c.food_id == food_id and 
                     Food_Ingredients.c.ingredients_id == ingredient_id)
 
-            DBstorage.__session.execute(query_update)
+            self.__session.execute(query_update)
             food.save()
 
         except IntegrityError:
@@ -200,24 +200,26 @@ class DBstorage:
 
     def save(self):
         """Applies changes to the database."""
-        DBstorage.__session.commit()
+
+        self.__session.commit()
 
     # ______________________________________________________________________________________
     
     def reload(self):
         """Creates all tables created by the models and starts a session"""
-        Base.metadata.create_all(DBstorage.__engine)
-        Session = sessionmaker(DBstorage.__engine)
-        DBstorage.__session = Session()
+        Base.metadata.create_all(self.__engine)
+        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        Session = scoped_session(session_factory)
+        self.__session = Session
 
     # ______________________________________________________________________________________
 
     def delete(self, obj):
         """Deletes a record from a table.
         obj: instance that will be deleted from the table."""
-        DBstorage.__session.delete(obj)
+        self.__session.delete(obj)
 
     # ______________________________________________________________________________________
 
     def close(self):
-        DBstorage.__session.close()
+        self.__session.close()

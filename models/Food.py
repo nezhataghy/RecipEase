@@ -20,7 +20,7 @@ class Food(BaseModel, ClassMapper):
                                back_populates='food', viewonly=False, 
                                cascade='all, delete-orphan',
                                single_parent=True)
-    recipe = relationship("Recipe", cascade='all, delete-orphan', backref='food')
+    recipe = relationship("Recipe", cascade='all, delete-orphan', backref='food', uselist=False)
 
 
 

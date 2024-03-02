@@ -7,6 +7,7 @@ from models.Ingredient import Ingredient
 from models.Recipe import Recipe
 from models.bridges.food_ingredients import Food_Ingredients
 from models import storage
+from sqlalchemy import inspect
 
 
 class RecipEaseCLI(Cmd):
@@ -27,6 +28,9 @@ class RecipEaseCLI(Cmd):
         """Exits the program."""
         print("Bye!")
         return True
+    
+    def emptyline(self):
+        return False
     
     def do_help(self, arg):
         """Choose from (exit, quit, help, EOF) for help."""
@@ -144,8 +148,11 @@ Usage: create class_name att1=value1 att2=value2 att3=value3"""
             storage.append_ingredient_to_food(food_id, ingredient_id, quantity)
         else:
             cls = eval(usage_create.get('class_name'))
-            obj = cls(**attributes)
-            obj.save()
+            try:
+                obj = cls(**attributes)
+                obj.save()
+            except AttributeError:
+                print('Recipease Error: Some attributes were not found in the table.')
     
     # _______________________________________________________________________________
             
@@ -191,7 +198,11 @@ Usage: update class_name obj_id att1=value1 att2=value2 att3=value3"""
         try:
             obj = storage.get_obj_by_id(cls, obj_id)
             for k, v in attributes.items():
-                setattr(obj, k, v)
+                if k in inspect(cls).columns.keys():
+                    setattr(obj, k, v)
+                else:
+                    print(f"RecipEase Error: Attribute '{k}' not found in class '{cls.__name__}'")
+                    return
             obj.save()
         except AttributeError:
             print('RecipEase Error: Object not found!')
