@@ -68,7 +68,7 @@ class DBstorage:
         #     return meal.to_dict()
 
         if meal.recipe:
-            meal.recipe[0]
+            meal.recipe
         
         if meal.ingredients:
             meal.ingredients
@@ -77,7 +77,7 @@ class DBstorage:
 
         if meal.recipe:
             # Update the recipe property with the dict of recipe object
-            food_map['recipe'] = food_map['recipe'][0].to_dict()
+            food_map['recipe'] = food_map['recipe'].to_dict()
             del food_map.get('recipe')['food_id']
 
         if meal.ingredients:
