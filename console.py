@@ -69,9 +69,6 @@ class RecipEaseCLI(Cmd):
                 print("RecipEase Error: No instance found 🧐")
                 return 0
 
-        if "attributes" in usage:
-            pass
-
     # _______________________________________________________________________________
 
     @staticmethod
@@ -128,7 +125,7 @@ class RecipEaseCLI(Cmd):
                 
     def do_create(self, line):
         """Creates an instance (record) of a class (table) and save it to the DB.
-Usage: create class_name att1=value1 att2=value2 att3=value3"""
+           Usage: create class_name att1=value1 att2=value2 att3=value3"""
         
         usage_create = {
             'class_name': '',
@@ -158,7 +155,7 @@ Usage: create class_name att1=value1 att2=value2 att3=value3"""
             
     def do_update(self, line):
         """Updates an instance (record) of a class (table) and save it to the DB.
-Usage: update class_name obj_id att1=value1 att2=value2 att3=value3"""
+           Usage: update class_name obj_id att1=value1 att2=value2 att3=value3"""
         if line.split()[0] == 'Food_Ingredients':
             usage_update = {
             'class_name': '',
@@ -211,7 +208,7 @@ Usage: update class_name obj_id att1=value1 att2=value2 att3=value3"""
 
     def do_delete(self, line):
         """Updates an instance (record) of a class (table) and save it to the DB.
-Usage: update class_name obj_id att1=value1 att2=value2 att3=value3"""
+           Usage: update class_name obj_id att1=value1 att2=value2 att3=value3"""
 
         usage_delete = {
             'class_name': '',
@@ -219,7 +216,7 @@ Usage: update class_name obj_id att1=value1 att2=value2 att3=value3"""
             'attributes_args': {} # hatethandely yakhty
         }
 
-        if RecipEaseCLI.__handle_usage(line, usage_delete, self.do_update.__doc__) == -1\
+        if RecipEaseCLI.__handle_usage(line, usage_delete, self.do_delete.__doc__) == -1\
         or RecipEaseCLI.__cmd_validation(usage_delete) == 0:
             return
         

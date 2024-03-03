@@ -123,6 +123,7 @@ class BaseModel:
         date_format = "%d-%m-%YT%I:%M:%S%p"
 
         # Change the private attribute's default name (from '_BaseModel__.att' to '__.att')
+        # and add each attribute in the __dict__ to a new dictionary
         obj_dict = {
             key.replace("_BaseModel__", '__'): value 
             for key, value in self.__dict__.items()
