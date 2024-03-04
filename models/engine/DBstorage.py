@@ -111,11 +111,11 @@ class DBstorage:
     # ______________________________________________________________________________________
 
     def get_obj_by_id(self, cls, id):
-        Food_list = self.all(cls)
+        list_obj = self.all(cls)
 
         try:
-            food, = [food for food in Food_list if food.id == id]
-            return food
+            obj, = [obj for obj in list_obj if obj.id == id]
+            return obj
         except ValueError:
             return None
                       
