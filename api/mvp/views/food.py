@@ -3,20 +3,12 @@
 
 from models import storage
 from flask import Flask, jsonify, make_response, abort, request as req
+from api.mvp.views import app_apis
 from models.Food import Food
 from sqlalchemy import inspect
 
 
-app = Flask(__name__)
-
-@app.errorhandler(404)
-def not_found(error):
-    """Handles 404 errors"""
-    return make_response(jsonify({"error": "Not found"}), 404)
-
-# ________________________________________________________________________________________
-
-@app.route('/api/food', strict_slashes=False)
+@app_apis.route('/food', strict_slashes=False)
 def get_food():
     """Retrieves all food from the database"""
     food = storage.all_food()
@@ -24,12 +16,24 @@ def get_food():
 
 # ________________________________________________________________________________________
 
-@app.route('/api/food', strict_slashes=False, methods=['POST'])
+@app_apis.route('/food/<string:meal_id>', strict_slashes=False)
+def get_meal(meal_id):
+    """Retrieves a meal from the Food table"""
+    meal = storage.get_meal(meal_id)
+
+    if not meal:
+        abort(404)
+
+    return jsonify({"meal": meal})
+
+# ________________________________________________________________________________________
+
+@app_apis.route('/food', strict_slashes=False, methods=['POST'])
 def add_meal():
     """Adds a meal to the food list"""
 
     # Check if request is valid json
-    if not req.is_json:
+    if req.is_json is False:
         abort(400, description="Not a JSON.")
     
     data = req.get_json()
@@ -44,10 +48,10 @@ def add_meal():
 
 # ________________________________________________________________________________________
 
-@app.route('/api/food/<string:meal_id>', strict_slashes=False, methods=['PUT'])
+@app_apis.route('/food/<string:meal_id>', strict_slashes=False, methods=['PUT'])
 def update_meal(meal_id):
     """Updates a meal from the food list"""
-    if not req.is_json:
+    if req.is_json is False:
         abort(400, description="Not a JSON.")
     
     meal = storage.get_obj_by_id(Food, meal_id)
@@ -60,14 +64,14 @@ def update_meal(meal_id):
     for k, v in data.items():
         if k in inspect(Food).columns.keys():
             setattr(meal, k, v)
-    
+
     meal.save()
     
     return jsonify({"meal": storage.get_meal(meal.id)})
 
 # ________________________________________________________________________________________
 
-@app.route('/api/food/<string:meal_id>', strict_slashes=False, methods=['DELETE'])
+@app_apis.route('/food/<string:meal_id>', strict_slashes=False, methods=['DELETE'])
 def delete_meal(meal_id):
     """Deletes a meal from the Food table"""
     meal = storage.get_obj_by_id(Food, meal_id)
@@ -79,19 +83,7 @@ def delete_meal(meal_id):
 
 # ________________________________________________________________________________________
 
-@app.route('/api/food/<string:meal_id>', strict_slashes=False)
-def get_meal(meal_id):
-    """Retrieves a meal from the Food table"""
-    meal = storage.get_meal(meal_id)
-
-    if not meal:
-        abort(404)
-
-    return jsonify({"meal": meal})
-
-# ________________________________________________________________________________________
-
-@app.route('/api/search_food/<string:meal_substr>', strict_slashes=False)
+@app_apis.route('/search_food/<string:meal_substr>', strict_slashes=False)
 def search_food(meal_substr):
     """Retreives food by searching for its substring"""
 
@@ -101,7 +93,3 @@ def search_food(meal_substr):
         return jsonify([])
     
     return jsonify({'food': food_list})
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
