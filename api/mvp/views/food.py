@@ -32,13 +32,22 @@ def get_meal(meal_id):
 def add_meal():
     """Adds a meal to the food list"""
 
+    json_req = req.get_json()
+
     # Check if request is valid json
-    if req.is_json is False:
+    if not json_req:
         abort(400, description="Not a JSON.")
     
-    data = req.get_json()
-    
-    meal = Food(**data)
+    if 'name' not in json_req and 'category' not in json_req:
+        abort(400, description="Missing food name and food category.")
+
+    if 'name' not in json_req:
+        abort(400, description="Missing food name.")
+
+    if 'category' not in json_req:
+        abort(400, description="Missing food category.")
+
+    meal = Food(**json_req)
     
     meal.save()
     if storage.get_meal(meal.id) == {}:

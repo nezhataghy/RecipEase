@@ -32,25 +32,26 @@ def get_recipe(recipe_id):
 def add_recipe():
     """Adds recipe to the Recipes table in the database"""
     
+    json_req = request.get_json()
+
     # Check if request is valid json
-    if request.is_json is False:
+    if not json_req:
         abort(400, description="Not a JSON.")
-    
-    data = request.get_json()
-    
-    if 'content' not in data and 'food_id' not in data:
+
+
+    if 'content' not in json_req and 'food_id' not in json_req:
         abort(400, description="Missing content and food_id.")
 
-    if 'content' not in data:
+    if 'content' not in json_req:
         abort(400, description="Missing content.")
     
-    if 'food_id' not in data:
+    if 'food_id' not in json_req:
         abort(400, description="Missing food_id.")
         
-    food = storage.get_obj_by_id(Food, data['food_id'])
+    food = storage.get_obj_by_id(Food, json_req['food_id'])
     if not food:
         abort(400, description='"food_id" is incorrect!')
-    recipe = Recipe(**data)
+    recipe = Recipe(**json_req)
     
     recipe.save()
 

@@ -185,7 +185,7 @@ class RecipEaseCLI(Cmd):
             if None in food_ingredient_row:
                 return
 
-            storage.update_food_ingredient(food_id, ingredient_id, quantity)
+            storage.update_ingredient_quantity(food_id, ingredient_id, quantity)
             food = storage.get_obj_by_id(Food, food_id)
 
             if food:
