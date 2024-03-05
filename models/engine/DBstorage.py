@@ -159,9 +159,10 @@ class DBstorage:
         except ValueError:
             if not food:
                 print("Food not found in Food table")
+                return "food"
             if not ingredient:
                 print("Ingredient not found in Ingredients table")
-            return
+                return "ingredient"
         
         try:
             query = Food_Ingredients.insert().values(food_id=bindparam('food_id'), 
@@ -174,10 +175,13 @@ class DBstorage:
 
         except IntegrityError:
             print("The ingredient is already appended to the food!")
+            raise
+        
+        return None
 
     # ______________________________________________________________________________________
 
-    def update_food_ingredient(self, food_id:str, ingredient_id:str, quantity:str):
+    def update_ingredient_quantity(self, food_id:str, ingredient_id:str, quantity:str):
         """Updates food_ingredient's quantity
         Args: 
             food_id: food id needed to get a quantity of an ingredient
@@ -192,9 +196,10 @@ class DBstorage:
         except ValueError:
             if not food:
                 print("Food not found in Food table")
+                return 'food'
             if not ingredient:
                 print("Ingredient not found in Ingredients table")
-            return
+                return 'ingredient'
 
         try:    
             query_update = Food_Ingredients.update().values(quantity=quantity
@@ -206,6 +211,9 @@ class DBstorage:
 
         except IntegrityError:
             print("The ingredient is already appended to the food!")
+            raise
+
+        return None
 
     # ______________________________________________________________________________________
 
