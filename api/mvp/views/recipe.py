@@ -50,6 +50,7 @@ def add_recipe():
     food = storage.get_obj_by_id(Food, data['food_id'])
     if not food:
         abort(400, description='"food_id" is incorrect!')
+
     recipe = Recipe(**data)
     
     recipe.save()
