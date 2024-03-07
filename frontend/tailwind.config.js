@@ -8,6 +8,7 @@ module.exports = {
       },
       backgroundColor: {
         main: {
+          extralight: '#fff7ea',
           light: '#f9f9f9',
           dark: '#5f5950'
         },
@@ -26,6 +27,7 @@ module.exports = {
         },
         dark: '5f5950',
         sec: {
+        extralight: '#fff7ea',
         light: '#ffcf88',
         med: '#ffb03b',
         dark: '#FF9B08'
