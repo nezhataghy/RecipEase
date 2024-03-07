@@ -49,6 +49,7 @@ def add_recipe():
         abort(400, description="Missing food_id.")
         
     food = storage.get_obj_by_id(Food, json_req['food_id'])
+
     if not food:
         abort(400, description='"food_id" is incorrect!')
 

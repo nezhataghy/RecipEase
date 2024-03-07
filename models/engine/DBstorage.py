@@ -15,7 +15,7 @@ from models.bridges.food_ingredients import Food_Ingredients
 
 
 class DBstorage:
-    """Database management representation"""
+    """Database management"""
     
     __engine = ''
     __session = ''

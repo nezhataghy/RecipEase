@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/dist/styles.css"/>
+    <script src="https://kit.fontawesome.com/8796245748.js" crossorigin="anonymous"></script>
+    <title>RecipEase</title>
+</head>
+<body class="font-poppins bg-main-light">
+    <header class="text-main-light bg-no-repeat bg-cover h-screen relative">
+        <div class="header-layer w-full h-full absolute bg-gray-950 bg-opacity-30">
+        <nav class="grid md:grid-cols-4 grid-cols-2 md:py-7 items-center bg-sec-dark bg-opacity-50">
+            <!-- Medium and above -->
+            <div class="logo md:col-span-1 ml-7 ">
+                <h1 class="cursor-pointer hover:text-main-light hover:font-extrabold duration-300 ease-out text-2xl">RecipEase</h1>
+            </div>
+            <ul class="links md:flex md:col-span-3 md:gap-7 hidden">
+                <li class="link"><a href="#" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Home</a></li>
+                <li class="link"><a href="#" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Food</a></li>
+                <li class="link"><a href="#" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Contact</a></li>
+                <li class="link"><a href="#" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">About</a></li>
+            </ul>
+            <!-- Small devices -->
+            <div class="md:hidden text-end mr-7 bars-icon">
+                <i class="fa-solid fa-bars"></i>
+                <ul class="mobile-list md:hidden hidden w-full mr-7 text-end">
+                    <li class="link py-3 mr-7"><a href="#" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Home</a></li>
+                    <li class="link py-3 mr-7"><a href="#" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Food</a></li>
+                    <li class="link py-3 mr-7"><a href="#" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Contact</a></li>
+                    <li class="link py-3 mr-7"><a href="#" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">About</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="header-content absolute top-2/4 -translate-y-2/4 ml-4">
+            <p class="font-bold text-2xl md:text-5xl w-1/2 mb-4 text-sec-dark">The best way to cook is to choose our food for better taste!</p>    
+            
+            <a href="#sectionMenu" class="btn first:hover:text-main-light">
+                <i class="fa-solid fa-utensils text-2xl text-main-dark"></i>
+                Menu
+            </a>
+        </div>
+    </div>
+    </header>
+
+    <section class="section--why_recipease mt-8 ">
+        <h2 class="section-title">Why choose <span class="text-sec-dark">RecipEase</span></h2>
+        <div class="container mx-auto">
+        <div class="grid md:grid-cols-3 gap-5 mx-auto">
+            <article class="bg-white shadow-xl">
+                <div class="py-12 px-6">
+                    <h3 class="mb-4 text-sec-med text-3xl font-bold italic">01</h3>
+                    <h2 class="mb-4 text-main-dark text-2xl font-semibold">Lorem Ipsum</h2>
+                    <p class="font-light text-main-dark">Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
+                </div>
+            </article>
+            <article class="bg-white shadow-xl">
+                <div class="py-12 px-6">
+                    <h3 class="mb-4 text-sec-med text-3xl font-bold italic">02</h3>
+                    <h2 class="mb-4 text-main-dark text-2xl font-semibold">Lorem Ipsum</h2>
+                    <p class="font-light text-main-dark">Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
+                </div>
+            </article>
+            <article class="bg-white shadow-xl">
+                <div class="py-12 px-6">
+                    <h3 class="mb-4 text-sec-med text-3xl font-bold italic">03</h3>
+                    <h2 class="mb-4 text-main-dark text-2xl font-semibold">Lorem Ipsum</h2>
+                    <p class="font-light text-main-dark">Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
+                </div>
+            </article>
+        </div>
+    </div>
+    </section>
+
+    <section id="sectionMenu" class="section-menu mt-20 relative ">
+        <h2 class="section-title">Check our tasty <span class="text-sec-dark">Menu</span></h2>
+        <div class="options flex justify-center gap-5 mb-7">
+            <button class="btn text-base font-bold rounded-3xl bg-transparent border-2 border-sec-dark hover:text-main-light">Breakfast</button>
+            <button class="btn text-base font-bold rounded-3xl bg-transparent border-2 border-sec-dark hover:text-main-light">Lunch</button>
+            <button class="btn text-base font-bold rounded-3xl bg-transparent border-2 border-sec-dark hover:text-main-light">Dinner</button>
+        </div>
+
+        <div class="container mx-auto w-8/12">
+            <div class="menu grid md:grid-rows-5 md:grid-cols-2 gap-7">
+                <div>
+                    <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4 ">
+                        <h3 class="foodname relative z-10 after:font-thin after:text-main-dark">food</h3>
+                        <img src="./assets/images/landing_page.jpg" class="menu-image"/>
+                    </div>
+                    <p class="food-ingredients text-sec-med font-light">ing1, ing2, ing3, ing4.</p>
+                </div>
+                <div>
+                    <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4 ">
+                        <h3 class="foodname relative z-10 after:font-thin after:text-main-dark">Chicken Panet</h3>
+                        <img src="./assets/images/landing_page.jpg" class="menu-image"/>
+                    </div>
+                    <p class="food-ingredients text-sec-med font-light">ing1, ing2, ing3, ing4.</p>
+                </div>
+                <div>
+                    <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4 ">
+                        <h3 class="foodname relative z-10 after:font-thin after:text-main-dark">Rizo Rice</h3>
+                        <img src="./assets/images/landing_page.jpg" class="menu-image"/>
+                    </div>
+                    <p class="food-ingredients text-sec-med font-light">ing1, ing2, ing3, ing4.</p>
+                </div>
+                <div>
+                    <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4 ">
+                        <h3 class="foodname relative z-10 after:font-thin after:text-main-dark">Negresco</h3>
+                        <img src="./assets/images/landing_page.jpg" class="menu-image"/>
+                    </div>
+                    <p class="food-ingredients text-sec-med font-light">ing1, ing2, ing3, ing4.</p>
+                </div>
+                <div>
+                    <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4 ">
+                        <h3 class="foodname relative z-10 after:font-thin after:text-main-dark">Alfredo</h3>
+                        <img src="./assets/images/landing_page.jpg" class="menu-image"/>
+                    </div>
+                    <p class="food-ingredients text-sec-med font-light">ing1, ing2, ing3, ing4.</p>
+                </div>
+                <div>
+                    <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4 ">
+                        <h3 class="foodname relative z-10 after:font-thin after:text-main-dark">Chicken with Rice</h3>
+                        <img src="./assets/images/landing_page.jpg" class="menu-image"/>
+                    </div>
+                    <p class="food-ingredients text-sec-med font-light">ing1, ing2, ing3, ing4.</p>
+                </div>
+                <div>
+                    <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4 ">
+                        <h3 class="foodname relative z-10 after:font-thin after:text-main-dark">Kebda</h3>
+                        <img src="./assets/images/landing_page.jpg" class="menu-image"/>
+                    </div>
+                    <p class="food-ingredients text-sec-med font-light">ing1, ing2, ing3, ing4.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
