@@ -107,6 +107,13 @@ class DBstorage:
             food_map['ingredients'] = [ing.to_dict() for ing in meal.ingredients]
 
         return food_map
+    
+    # ______________________________________________________________________________________
+    
+    def get_food_by_category(self, category='breakfast'):
+        food = self.all_food()
+        food_filter = [meal for meal in food if meal['category'].upper() == category.upper()]
+        return food_filter
 
     # ______________________________________________________________________________________
 
@@ -134,8 +141,9 @@ class DBstorage:
             return None
 
         for food in food_list:
-            if name_substring in food.name:
+            if name_substring.lower() in food.name.lower():
                 search_result.append(self.get_meal(food.id))
+                print(search_result)
 
         return search_result
     

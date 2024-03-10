@@ -28,6 +28,18 @@ def get_meal(meal_id):
 
 # ________________________________________________________________________________________
 
+@app_apis.route('/food/category/<string:category>', strict_slashes=False)
+def get_meal_by_category(category):
+    """Retrieves a list of food by category from the Food table"""
+    food = storage.get_food_by_category(category)
+
+    if not food:
+        abort(404)
+
+    return jsonify({"count": len(food), "food": food})
+
+# ________________________________________________________________________________________
+
 @app_apis.route('/food', strict_slashes=False, methods=['POST'])
 def add_meal():
     """Adds a meal to the food list"""

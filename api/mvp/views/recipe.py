@@ -80,8 +80,8 @@ def update_recipe(recipe_id):
     if data.get('food_id'):
         food = storage.get_obj_by_id(Food, data['food_id'])
 
-        if food.recipe:
-            abort(400, description="This food already has a recipe.")
+        if not food:
+            abort(404, description='"food_id" is incorrect!')
     
     for k, v in data.items():
         if k in inspect(Recipe).columns.keys():

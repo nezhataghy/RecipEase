@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles/dist/styles.css"/>
         <script src="https://kit.fontawesome.com/8796245748.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="scripts/food.js"></script>
         <title>RecipEase</title>
     </head>
     <body class="font-poppins bg-main-light">
@@ -32,9 +34,11 @@
         </nav>
         <main class="food">
             <div class="container mx-auto w-4/5">
-                <input type="search" placeholder="Search food by name" class="mt-10 py-4 px-6 border-none w-full shadow-lg rounded-md">
+                <div class="search-container">
+                    <input type="search" placeholder="Search food by name" class="search-input mt-10 py-4 px-6 border-none w-full shadow-lg rounded-md">
+                </div>
                 <div class="food-grid grid md:grid-cols-2 lg:grid-cols-3 mt-10 gap-10">
-                    <figure class="bg-white pt-5 pb-3 px-5 rounded-lg shadow-lg">
+                    <!-- <figure class="bg-white pt-5 pb-3 px-5 rounded-lg shadow-lg">
                         <div class="layer">
                             <a href="meal.html"><img src="./assets/images/landing_page.jpg" alt="landing page" class="cursor-pointer rounded-lg"></a>
                         </div>
@@ -97,7 +101,7 @@
                         <figcaption class="mt-2">
                             <a href="meal.html"><h3 class="text-main-dark font-bold cursor-pointer text-xl ml-2">Cheese Burger</h3></a>
                         </figcaption>
-                    </figure>
+                    </figure> -->
 
                 </div>
             </div>
