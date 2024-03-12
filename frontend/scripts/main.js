@@ -105,7 +105,6 @@ $(document).ready(function() {
         })
         } catch (err){
             displayErrorMsg(err.message);
-        } finally {
         }
     }
 
