@@ -143,7 +143,6 @@ class DBstorage:
         for food in food_list:
             if name_substring.lower() in food.name.lower():
                 search_result.append(self.get_meal(food.id))
-                print(search_result)
 
         return search_result
     

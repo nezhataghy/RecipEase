@@ -1,4 +1,4 @@
-const bufferingDisplay = function() {
+const displayBuffer = function() {
     $('.menu-meal').remove();
     $('.section-menu .container').prepend(`
     <div class="buffer fa-3x flex justify-center min-h-96">
@@ -7,7 +7,7 @@ const bufferingDisplay = function() {
     `)
 }
 
-const errorMsgDisplay = function(errMsg) {
+const displayErrorMsg = function(errMsg) {
     $('.section-menu .container').prepend(`
     <div class="error-container flex justify-center">
         <p class="error-msg">${errMsg}</p>
@@ -18,13 +18,13 @@ const errorMsgDisplay = function(errMsg) {
 $(document).ready(function() {
     const getFood = async function(category) {
         try {
-            bufferingDisplay();
+            displayBuffer();
             const response = await fetch(`http://127.0.0.1:5000/api/food/category/${category}`);
             const food = await response.json();
             if (!food) throw new Error('Failed to fetch, Check your internet connection.xx');
             return food;
         } catch (err) {
-            errorMsgDisplay(err.message);
+            displayErrorMsg(err.message);
         } finally {
             $('.buffer').remove();
             $('.error-container').remove();
@@ -45,8 +45,8 @@ $(document).ready(function() {
             });
             $('.menu').append(`
             <div class="menu-meal">
-                <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4 ">
-                    <h3 class="foodname relative z-10 after:font-thin after:text-main-dark">${meal.name}</h3>
+                <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4">
+                    <h3 class="foodname relative z-10 after:font-thin after:text-main-dark sm:text-base">${meal.name}</h3>
                     <img src="./assets/images/landing_page.jpg"
                     class="menu-img"
                     data-mealID="${meal.__id}"/>
@@ -56,8 +56,7 @@ $(document).ready(function() {
             `)
         })
         } catch (err) {
-            errorMsgDisplay(err.message);
-        } finally {
+            displayErrorMsg(err.message);
         }
     }
 
@@ -105,7 +104,7 @@ $(document).ready(function() {
             `)
         })
         } catch (err){
-            errorMsgDisplay(err.message);
+            displayErrorMsg(err.message);
         } finally {
         }
     }
@@ -120,7 +119,6 @@ $(document).ready(function() {
         window.location.href = `meal.html?id=${mealId}`;
     }
 
-    // $('.menu-meal .foodname_img img').click(mealLink)
     $('.menu').click(function (e) {
         if (!$(e.target).hasClass('menu-img')) return;
 

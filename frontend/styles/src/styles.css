@@ -24,8 +24,9 @@ header {
         transition-timing-function: ease-out;
     }
 }
+
 .section-title {
-    @apply text-main-dark text-3xl relative text-center mb-10;
+    @apply text-main-dark text-3xl relative text-center mb-10 font-extrabold;
 }
 
 .menu-img {
@@ -35,7 +36,7 @@ header {
 .bars-icon:hover ul.mobile-list {
     display: block; 
 }
-section.section-menu::before {
+section.section-header::before {
     content:"";
     position: absolute;
     background-color: rgb(226, 226, 226);
@@ -83,4 +84,31 @@ section.section-menu::before {
 
 .active-menu_btn {
     @apply bg-sec-dark text-main-light;
+}
+
+.card-feature .icon-container,
+.soon::before {
+    transition-duration: 300ms;
+    transition-timing-function: ease-in;
+}
+
+.card-feature:hover .icon-container {
+    @apply bg-sec-dark;
+}
+
+.card-feature:hover .icon-container i {
+    @apply text-sec-extralight;
+}
+
+.soon {
+    position: relative;
+}
+
+.soon::before {
+    content: "Coming Soon";
+    @apply absolute top-0 right-0 md:text-sm text-xs rounded-md p-2 text-sec-dark bg-sec-extralight font-semibold;
+}
+
+.soon:hover::before{
+    @apply bg-sec-dark text-sec-extralight;
 }

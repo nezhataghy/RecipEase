@@ -40,6 +40,9 @@ module.exports = {
           dark: '#FF9B08'
           }
       },
+      borderWidth: {
+        40: "40px"
+      }
     }
   },
   plugins: [],
