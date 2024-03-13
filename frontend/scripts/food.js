@@ -32,7 +32,7 @@ $(document).ready(function() {
 
     const getFood = async function() {
         try {
-            const response = await fetch('http://127.0.0.1:5000/api/food');
+            const response = await fetch('http://0.0.0.0:5000/api/food');
             if (response) {
                 data = await response.json();
                 const food = data.food;
