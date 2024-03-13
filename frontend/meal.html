@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles/dist/styles.css"/>
+        <script src="https://kit.fontawesome.com/8796245748.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="scripts/meal.js"></script>
+        <title>RecipEase</title>
+    </head>
+    <body class="font-poppins bg-main-light">
+        <nav class="grid md:grid-cols-4 grid-cols-2 md:py-7 items-center bg-sec-dark text-main-light">
+            <!-- Medium and above -->
+            <div class="logo md:col-span-1 ml-7 ">
+                <h1 class="cursor-pointer hover:text-main-light hover:font-extrabold duration-300 ease-out text-2xl"><a href="index.html">RecipEase</a></h1>
+            </div>
+            <ul class="links md:flex md:col-span-3 md:gap-7 hidden">
+                <li class="link"><a href="index.html" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Home</a></li>
+                <li class="link"><a href="food.html" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Food</a></li>
+                <li class="link"><a href="#" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Contact</a></li>
+                <li class="link"><a href="index.html#about-us" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">About</a></li>
+            </ul>
+            <!-- Small devices -->
+            <div class="md:hidden text-end mr-7 bars-icon">
+                <i class="fa-solid fa-bars"></i>
+                <ul class="mobile-list md:hidden hidden w-full mr-7 text-end">
+                    <li class="link py-3 mr-7"><a href="index.html" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Home</a></li>
+                    <li class="link py-3 mr-7"><a href="food.html" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Food</a></li>
+                    <li class="link py-3 mr-7"><a href="#" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Contact</a></li>
+                    <li class="link py-3 mr-7"><a href="index.html#about-us" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">About</a></li>
+                </ul>
+            </div>
+        </nav>
+        <main class="meal">
+            <div class="container mx-auto w-4/5 mt-10">
+                <div class="options flex justify-center gap-5 mb-7">
+                    <button class="btn text-base font-bold rounded-3xl bg-transparent border-2 border-sec-dark hover:text-main-light">Details</button>
+                    <button class="btn text-base font-bold rounded-3xl bg-transparent border-2 border-sec-dark hover:text-main-light">Video</button>
+                </div>
+                <div class="details shadow-md py-3 px-5">
+                    <div class="meal-image">    
+                    </div>
+                    <!-- <div class="meal-details">
+                        <h2 class="meal-name mt-3 mb-6 font-bold text-sec-dark text-2xl text-center">Cheese Burger</h2>
+                        <div class="grid md:grid-cols-3 sm:gap-y-4">
+
+                            <ul class="meal-recipe md:col-span-2 bg-sec-extralight shadow-md p-3 md:w-11/12">
+                                <h2 class="mb-4 font-extrabold text-main-dark md:text-xl md:text-left text-center">Recipe</h2>
+                                <div class="recipe-bullet flex items-start mt-3">
+                                    <span class="font-bold text-sec-med text-2xl">01.</span>
+                                    <li class="mb-3 mt-1 pl-2.5 w-4/5">Lorem ipsum dolor sit amet, consectetur adipisicing.</li>
+                                </div>
+                                <div class="recipe-bullet flex items-start mt-3">
+                                    <span class="font-bold text-sec-med text-2xl">02.</span>
+                                    <li class="mb-3 mt-1 pl-2.5 w-4/5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, odit!.</li>
+                                </div>
+                                <div class="recipe-bullet flex items-start mt-3">
+                                    <span class="font-bold text-sec-med text-2xl">03.</span>
+                                    <li class="mb-3 mt-1 pl-2.5 w-4/5">Lorem ipsum dolor sit amet..</li>
+                                </div>
+                                
+                                <div class="recipe-bullet flex items-start mt-3">
+                                    <span class="font-bold text-sec-med text-2xl">04.</span>
+                                    <li class="mb-3 mt-1 pl-2.5 w-4/5">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id, dicta rerum assumenda pariatur odit placeat vel eveniet!.</li>
+                                </div>
+                                <div class="recipe-bullet flex items-start mt-3">
+                                    <span class="font-bold text-sec-med text-2xl">05.</span>
+                                    <li class="mb-3 mt-1 pl-2.5 w-4/5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem molestiae sit minima..</li>
+                                </div>
+                                <div class="recipe-bullet flex items-start mt-3">
+                                    <span class="font-bold text-sec-med text-2xl">06.</span>
+                                    <li class="mb-3 mt-1 pl-2.5 w-4/5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem molestiae sit minima..</li>
+                                </div>
+                                <div class="recipe-bullet flex items-start mt-3">
+                                    <span class="font-bold text-sec-med text-2xl">07.</span>
+                                    <li class="mb-3 mt-1 pl-2.5 w-4/5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem molestiae sit minima..</li>
+                                </div>
+                                <div class="recipe-bullet flex items-start mt-3">
+                                    <span class="font-bold text-sec-med text-2xl">08.</span>
+                                    <li class="mb-3 mt-1 pl-2.5 w-4/5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem molestiae sit minima..</li>
+                                </div>
+                                <div class="recipe-bullet flex items-start mt-3">
+                                    <span class="font-bold text-sec-med text-2xl">09.</span>
+                                    <li class="mb-3 mt-1 pl-2.5 w-4/5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem molestiae sit minima..</li>
+                                </div>
+                                <div class="recipe-bullet flex items-start mt-3">
+                                    <span class="font-bold text-sec-med text-2xl">10.</span>
+                                    <li class="mb-3 mt-1 pl-2.5 w-4/5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem molestiae sit minima..</li>
+                                </div>
+                            </ul>
+
+                            <ul class="meal-ingredients md:col-span-1 bg-sec-extralight shadow-md p-3">
+                                <h2 class="mb-4 font-extrabold text-main-dark md:text-xl md:text-left text-center">Ingredients</h2>
+                                <div class="recipe-bullet flex items-start mt-3">
+                                    <span class="font-bold text-sec-med text-2xl">01.</span>
+                                    <li class="mb-3 mt-1 pl-2.5">1. Lorem</li>
+                                </div>
+                                <div class="recipe-bullet flex items-start mt-3">
+                                    <span class="font-bold text-sec-med text-2xl">02.</span>
+                                    <li class="mb-3 mt-1 pl-2.5">2. ipsum.</li>
+                                </div>
+                                <div class="recipe-bullet flex items-start mt-3">
+                                    <span class="font-bold text-sec-med text-2xl">03.</span>
+                                    <li class="mb-3 mt-1 pl-2.5">3. dolor.</li>
+                                </div>
+                                
+                                <div class="recipe-bullet flex items-start mt-3">
+                                    <span class="font-bold text-sec-med text-2xl">04.</span>
+                                    <li class="mb-3 mt-1 pl-2.5">4. sit.</li>
+                                </div>
+                                <div class="recipe-bullet flex items-start mt-3">
+                                    <span class="font-bold text-sec-med text-2xl">05.</span>
+                                    <li class="mb-3 mt-1 pl-2.5">5. amet.</li>
+                                </div>
+                            </ul>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

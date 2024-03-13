@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/dist/styles.css"/>
+    <script src="https://kit.fontawesome.com/8796245748.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/main.js"></script>
+    <title>RecipEase</title>
+</head>
+<body class="font-poppins bg-main-light">
+
+    <header class="text-main-light bg-no-repeat bg-cover h-screen relative">
+        <div class="header-layer w-full h-full absolute bg-gray-950 bg-opacity-30">
+        <nav class="grid md:grid-cols-4 grid-cols-2 md:py-7 items-center bg-sec-dark bg-opacity-50">
+            <!-- Medium and above -->
+            <div class="logo md:col-span-1 ml-7 ">
+                <h1 class="cursor-pointer hover:text-main-light hover:font-extrabold duration-300 ease-out text-2xl"><a href="index.html">RecipEase</a></h1>
+            </div>
+            <ul class="links md:flex md:col-span-3 md:gap-7 hidden">
+                <li class="link"><a href="index.html" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Home</a></li>
+                <li class="link"><a href="food.html" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Food</a></li>
+                <li class="link"><a href="#" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Contact</a></li>
+                <li class="link"><a href="#about-us" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">About</a></li>
+            </ul>
+            <!-- Small devices -->
+            <div class="md:hidden text-end mr-7 bars-icon">
+                <i class="fa-solid fa-bars"></i>
+                <ul class="mobile-list md:hidden hidden w-full mr-7 text-end">
+                    <li class="link py-3 mr-7"><a href="index.html" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Home</a></li>
+                    <li class="link py-3 mr-7"><a href="food.html" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Food</a></li>
+                    <li class="link py-3 mr-7"><a href="#" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Contact</a></li>
+                    <li class="link py-3 mr-7"><a href="#about-us" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">About</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="header-content absolute top-2/4 -translate-y-2/4 ml-4">
+            <p class="font-bold text-2xl md:text-5xl w-1/2 mb-4 text-sec-dark">The best way to cook is to choose our food for better taste!</p>    
+            
+            <a href="#sectionMenu" class="btn">
+                <i class="fa-solid fa-utensils text-2xl text-main-dark"></i>
+                Menu
+            </a>
+        </div>
+    </div>
+    </header>
+
+    <section class="section--why_recipease mt-11 py-20">
+        <h2 class="section-title">Why choose <span class="text-sec-dark">RecipEase</span></h2>
+        <div class="container mx-auto">
+        <div class="grid md:grid-cols-3 gap-5 mx-auto">
+            <article class="bg-white shadow-xl border-t-40 border-sec-dark rounded-lg">
+                <div class="py-12 px-6 ">
+                    <h3 class="mb-4 text-sec-med text-3xl font-bold italic">01</h3>
+                    <h2 class="mb-4 text-main-dark text-2xl font-semibold">Convenience</h2>
+                    <p class="font-light text-main-dark">RecipEase offers easy access to diverse recipes and ingredients, 
+                        streamlining meal planning and preparation.
+                    </p>
+                </div>
+            </article>
+            <article class="bg-white shadow-xl border-t-40 border-sec-dark rounded-lg">
+                <div class="py-12 px-6">
+                    <h3 class="mb-4 text-sec-med text-3xl font-bold italic">02</h3>
+                    <h2 class="mb-4 text-main-dark text-2xl font-semibold">Simplified Cooking</h2>
+                    <p class="font-light text-main-dark">
+                        With clear instructions and user-friendly interfaces, RecipEase caters to users of all skill levels, 
+                        making cooking enjoyable and hassle-free.
+                    </p>
+                </div>
+            </article>
+            <article class="bg-white shadow-xl border-t-40 border-sec-dark rounded-lg">
+                <div class="py-12 px-6">
+                    <h3 class="mb-4 text-sec-med text-3xl font-bold italic">03</h3>
+                    <h2 class="mb-4 text-main-dark text-2xl font-semibold">Future Integration</h2>
+                    <p class="font-light text-main-dark">
+                        RecipEase plans to seamlessly combine recipe browsing, ingredient ordering, 
+                        and meal preparation in one platform, providing a comprehensive solution for culinary needs.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </div>
+    </section>
+
+    <section id="sectionMenu" class="section-header section-menu mt-20 py-16 relative">
+        <h2 class="section-title">Check our tasty <span class="text-sec-dark">Menu</span></h2>
+        <div class="options flex justify-center gap-5 mb-7">
+            <button class="menu-btn btn breakfast-btn text-sm font-bold rounded-3xl bg-transparent border-2 border-sec-dark hover:text-main-light" data-category="breakfast">Breakfast</button>
+            <button class="menu-btn btn text-sm font-bold rounded-3xl bg-transparent border-2 border-sec-dark hover:text-main-light" data-category="lunch">Lunch</button>
+            <button class="menu-btn btn text-sm font-bold rounded-3xl bg-transparent border-2 border-sec-dark hover:text-main-light" data-category="dinner">Dinner</button>
+        </div>
+
+        <div class="container mx-auto w-11/12 md:w-8/12">
+        <!-- <div class="fa-3x flex justify-center">
+                <i class="fa-solid fa-solid fa-utensils fa-fade text-sec-dark"></i>
+            </div> -->
+            <!-- <div class="error-container flex justify-center">
+                <p class="error-msg"></p>
+            </div> -->
+            <div class="menu grid md:grid-cols-2 gap-7">
+                
+                <!-- <div>
+                    <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4 ">
+                        <h3 class="foodname relative z-10 after:font-thin after:text-main-dark">food</h3>
+                        <img src="./assets/images/landing_page.jpg" class="relative md:w-2/5 lg:w-1/4 w-1/3 object-cover z-10 px-2 opacity-100 bg-main-light rounded-xl cursor-pointer"/>
+                    </div>
+                    <p class="food-ingredients text-sec-med font-light">ing1, ing2, ing3, ing4.</p>
+                </div>
+                <div>
+                    <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4 ">
+                        <h3 class="foodname relative z-10 after:font-thin after:text-main-dark">Chicken Panet</h3>
+                        <img src="./assets/images/landing_page.jpg" class="relative md:w-2/5 lg:w-1/4 w-1/3 object-cover z-10 px-2 opacity-100 bg-main-light rounded-xl cursor-pointer"/>
+                    </div>
+                    <p class="food-ingredients text-sec-med font-light">ing1, ing2, ing3, ing4.</p>
+                </div>
+                <div>
+                    <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4 ">
+                        <h3 class="foodname relative z-10 after:font-thin after:text-main-dark">Rizo Rice</h3>
+                        <img src="./assets/images/landing_page.jpg" class="relative md:w-2/5 lg:w-1/4 w-1/3 object-cover z-10 px-2 opacity-100 bg-main-light cursor-pointer"/>
+                    </div>
+                    <p class="food-ingredients text-sec-med font-light">ing1, ing2, ing3, ing4.</p>
+                </div>
+                <div>
+                    <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4 ">
+                        <h3 class="foodname relative z-10 after:font-thin after:text-main-dark">Negresco</h3>
+                        <img src="./assets/images/landing_page.jpg" class="relative md:w-2/5 lg:w-1/4 w-1/3 object-cover z-10 px-2 opacity-100 bg-main-light rounded-xl cursor-pointer"/>
+                    </div>
+                    <p class="food-ingredients text-sec-med font-light">ing1, ing2, ing3, ing4.</p>
+                </div>
+                <div>
+                    <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4 ">
+                        <h3 class="foodname relative z-10 after:font-thin after:text-main-dark">Alfredo</h3>
+                        <img src="./assets/images/landing_page.jpg" class="relative md:w-2/5 lg:w-1/4 w-1/3 object-cover z-10 px-2 opacity-100 bg-main-light rounded-xl cursor-pointer"/>
+                    </div>
+                    <p class="food-ingredients text-sec-med font-light">ing1, ing2, ing3, ing4.</p>
+                </div>
+                <div>
+                    <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4 ">
+                        <h3 class="foodname relative z-10 after:font-thin after:text-main-dark">Chicken with Rice</h3>
+                        <img src="./assets/images/landing_page.jpg" class="relative md:w-2/5 lg:w-1/4 w-1/3 object-cover z-10 px-2 opacity-100 bg-main-light rounded-xl cursor-pointer"/>
+                    </div>
+                    <p class="food-ingredients text-sec-med font-light">ing1, ing2, ing3, ing4.</p>
+                </div>
+                <div>
+                    <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4 ">
+                        <h3 class="foodname relative z-10 after:font-thin after:text-main-dark">Kebda</h3>
+                        <img src="./assets/images/landing_page.jpg" class="relative md:w-2/5 lg:w-1/4 w-1/3 object-cover z-10 px-2 opacity-100 bg-main-light rounded-xl cursor-pointer"/>
+                    </div>
+                    <p class="food-ingredients text-sec-med font-light">ing1, ing2, ing3, ing4.</p>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <section id="about-us" class="section-header mt-20 py-16 relative">
+        <h2 class="section-title">About <span class="text-sec-dark">Us</span></h2>
+        <div class="container md:w-8/12 w-11/12 mx-auto">
+            <div class="grid md:grid-cols-2 items-center">
+                <div class="left-side">
+                    <h2 class="md:text-3xl text-lg font-bold md:w-2/3 text-main-dark mb-3">Prepare your meals by reaching the best recipe</h2>
+                    <div class="flex mt-2 mb-2">
+                        <i class="fa-solid fa-chevron-right mt-1 text-sec-dark"></i>
+                        <p class="md:w-8/12 mb-3 text-main-dark ml-3">
+                            This Project is intended to help other people who want to prepare their meals by reaching the recipe. 
+                            As well as finding the ingredients that match the meal.
+                        </p>
+                    </div>
+                    <div class="flex">
+                        <i class="fa-solid fa-chevron-right mt-1 text-sec-dark"></i>
+                        <p class="md:w-8/12 mb-3 text-main-dark ml-3">
+                            It offers lots of choices and easy recipes for people who are new to cooking, 
+                            and also for people who don’t know what their meal will be for the day.
+                        </p>
+                    </div>
+                </div>
+                <div class="right-side md:text-left text-center grid grid-cols-2 gap-5">
+                    <div class="card-feature md:py-7 md:px-10 pb-3 text-2xl rounded-md bg-white shadow-lg md:mt-8">
+                        <div class="icon-container mb-4 w-16 h-16 flex justify-center items-center rounded-full bg-sec-extralight md:mx-0 mx-auto md:mt-0 mt-11">
+                            <i class="fa-solid fa-utensils text-sec-dark"></i>
+                        </div>
+                        <h2 class="md:text-3xl text-xl font-bold text-main-dark mb-4">Prepare</h2>
+                        <p class="md:text-base text-xs text-main-dark font-light">Prepare your meals by reaching the best recipe.</p>
+                    </div>
+                    
+                    <div class="card-feature md:py-7 md:px-10 pb-3 text-2xl rounded-md bg-white shadow-lg">
+                        <div class="icon-container mb-4 w-16 h-16 flex justify-center items-center rounded-full bg-sec-extralight md:mx-0 mx-auto md:mt-0 mt-11">
+                            <i class="fa-solid fa-cheese text-sec-dark"></i>
+                        </div>
+                        <h2 class="md:text-3xl text-xl font-bold text-main-dark mb-4">Gather meal's ingredients</h2>
+                        <p class="md:text-base text-xs text-main-dark font-light">Prepare and get your ingredients ready for the cook.</p>
+                    </div>
+
+                    <div class="card-feature soon md:py-7 md:px-10 pb-3 text-2xl rounded-md bg-white shadow-lg md:mt-8">
+                        <div class="icon-container mb-4 w-16 h-16 flex justify-center items-center rounded-full bg-sec-extralight md:mx-0 mx-auto md:mt-0 mt-11">
+                            <i class="fa-solid fa-basket-shopping text-sec-dark"></i>
+                        </div>
+                        <h2 class="md:text-3xl text-xl font-bold text-main-dark mb-4">Missing an ingredient?</h2>
+                        <p class="md:text-base text-xs text-main-dark font-light">get it easily from the meal's ingredients store within an hour.</p>
+                    </div>
+
+                    <div class="card-feature soon md:py-7 md:px-10 pb-3 text-2xl rounded-md bg-white shadow-lg">
+                        <div class="icon-container mb-4 w-16 h-16 flex justify-center items-center rounded-full bg-sec-extralight md:mx-0 mx-auto md:mt-0 mt-11">
+                            <i class="fa-solid fa-kitchen-set text-sec-dark"></i>
+                        </div>
+                        <h2 class="md:text-3xl text-xl font-bold text-main-dark mb-4">Feeling lost?</h2>
+                        <p class="md:text-base text-xs text-main-dark font-light">Let us choose one of our suggested meal on your behalf</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="developers" class="section-header mt-20 py-16 relative">
+        <h2 class="section-title relative">Developers</h2>
+        <div class="container w-2/4 mx-auto">
+            <div class="flex justify-around">
+                <div class="card">
+                    <h2 class="text-xl text-main-dark ">Ehab Hussein</h2>
+                    <h4 class="text-xs text-main-dark font-semibold mb-3">Fullstack Web Developer</h4>
+                    <div class="accounts flex">
+                        <div class="social flex items-center justify-center bg-white shadow-lg mr-3 w-10 h-10 rounded-sm hover:bg-sec-med duration-300 ease-out cursor-pointer">
+                            <a href="https://www.linkedin.com/in/dev-ehabelsayed/" target="_blank"><i class="fa-brands fa-linkedin-in text-lg"></i></a>
+                        </div>
+                        <div class="social flex items-center justify-center bg-white shadow-lg mr-3 w-10 h-10 rounded-sm hover:bg-sec-med duration-300 ease-out cursor-pointer">
+                            <a href="https://github.com/ehabsmh" target="_blank"><i class="fa-brands fa-github text-lg"></i></a>
+                        </div>
+                        <div class="social flex items-center justify-center bg-white shadow-lg w-10 h-10 rounded-sm hover:bg-sec-med duration-300 ease-out cursor-pointer">
+                            <a href="https://twitter.com/dev_ehab" target="_blank"><i class="fa-brands fa-x-twitter text-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2 class="text-xl text-main-dark ">Nezha Aicha Taghy</h2>
+                    <h4 class="text-xs text-main-dark font-semibold mb-3">Fullstack Web Developer</h4>
+                    <div class="accounts flex">
+                        <div class="social flex items-center justify-center bg-white shadow-lg mr-3 w-10 h-10 rounded-sm hover:bg-sec-med duration-300 ease-out cursor-pointer">
+                            <a href="https://www.linkedin.com/in/nezha-aicha-taghi/" target="_blank"><i class="fa-brands fa-linkedin-in text-lg"></i></a>
+                        </div>
+                        <div class="social flex items-center justify-center bg-white shadow-lg mr-3 w-10 h-10 rounded-sm hover:bg-sec-med duration-300 ease-out cursor-pointer">
+                            <a href="https://github.com/nezhataghy" target="_blank"><i class="fa-brands fa-github text-lg"></i></a>
+                        </div>
+                        <div class="social flex items-center justify-center bg-white shadow-lg w-10 h-10 rounded-sm hover:bg-sec-med duration-300 ease-out cursor-pointer">
+                            <a href="https://twitter.com/ayshoush11" target="_blank"><i class="fa-brands fa-x-twitter text-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
