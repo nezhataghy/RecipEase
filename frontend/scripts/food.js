@@ -84,4 +84,8 @@ $(document).ready(function() {
 
         searchFood(this.value.toLowerCase());
     });
+
+    $('.bars-icon').click(function () {
+        $('.mobile-list').toggle('hidden');
+    })
 });

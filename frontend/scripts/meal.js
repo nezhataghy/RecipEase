@@ -61,4 +61,8 @@ $(document).ready(function() {
         });
     }
     getMeal()
+
+    $('.bars-icon').click(function () {
+        $('.mobile-list').toggle('hidden');
+    })
 });

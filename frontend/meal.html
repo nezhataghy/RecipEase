@@ -10,7 +10,7 @@
         <title>RecipEase</title>
     </head>
     <body class="font-poppins bg-main-light">
-        <nav class="grid md:grid-cols-4 grid-cols-2 md:py-7 items-center bg-sec-dark text-main-light">
+        <nav class="grid md:grid-cols-4 grid-cols-2 md:py-7 items-center bg-sec-dark bg-opacity-50">
             <!-- Medium and above -->
             <div class="logo md:col-span-1 ml-7 ">
                 <h1 class="cursor-pointer hover:text-main-light hover:font-extrabold duration-300 ease-out text-2xl"><a href="index.html">RecipEase</a></h1>
@@ -22,15 +22,15 @@
                 <li class="link"><a href="index.html#about-us" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">About</a></li>
             </ul>
             <!-- Small devices -->
-            <div class="md:hidden text-end mr-7 bars-icon">
-                <i class="fa-solid fa-bars"></i>
-                <ul class="mobile-list md:hidden hidden w-full mr-7 text-end">
-                    <li class="link py-3 mr-7"><a href="index.html" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Home</a></li>
-                    <li class="link py-3 mr-7"><a href="food.html" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Food</a></li>
-                    <li class="link py-3 mr-7"><a href="index.html#developers" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Developers</a></li>
-                    <li class="link py-3 mr-7"><a href="index.html#about-us" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">About</a></li>
-                </ul>
+            <div class="md:hidden text-end mr-7 bars_icon-container">
+                <i class="bars-icon fa-solid fa-bars"></i>
             </div>
+            <ul class="mobile-list col-span-2 md:hidden w-full mr-7 hidden text-end">
+                <li class="link py-3 mr-7"><a href="index.html" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Home</a></li>
+                <li class="link py-3 mr-7"><a href="food.html" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Food</a></li>
+                <li class="link py-3 mr-7"><a href="index.html#developers" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Developers</a></li>
+                <li class="link py-3 mr-7"><a href="index.html#about-us" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">About</a></li>
+            </ul>
         </nav>
         <main class="meal">
             <div class="container mx-auto w-4/5 mt-10">

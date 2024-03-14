@@ -125,4 +125,7 @@ $(document).ready(function() {
         mealLink(menuImg)
     })
 
+    $('.bars-icon').click(function () {
+        $('.mobile-list').toggle('hidden');
+    })
 });

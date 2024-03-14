@@ -25,15 +25,15 @@
                 <li class="link"><a href="#about-us" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">About</a></li>
             </ul>
             <!-- Small devices -->
-            <div class="md:hidden text-end mr-7 bars-icon">
-                <i class="fa-solid fa-bars"></i>
-                <ul class="mobile-list md:hidden hidden w-full mr-7 text-end">
-                    <li class="link py-3 mr-7"><a href="index.html" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Home</a></li>
-                    <li class="link py-3 mr-7"><a href="food.html" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Food</a></li>
-                    <li class="link py-3 mr-7"><a href="#developers" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Developers</a></li>
-                    <li class="link py-3 mr-7"><a href="#about-us" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">About</a></li>
-                </ul>
+            <div class="md:hidden text-end mr-7 bars_icon-container">
+                <i class="bars-icon fa-solid fa-bars"></i>
             </div>
+            <ul class="mobile-list col-span-2 md:hidden w-full mr-7 hidden text-end">
+                <li class="link py-3 mr-7"><a href="index.html" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Home</a></li>
+                <li class="link py-3 mr-7"><a href="food.html" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Food</a></li>
+                <li class="link py-3 mr-7"><a href="#developers" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">Developers</a></li>
+                <li class="link py-3 mr-7"><a href="#about-us" class="hover:text-main-light hover:font-extrabold duration-300 ease-out">About</a></li>
+            </ul>
         </nav>
         
         <div class="header-content absolute top-2/4 -translate-y-2/4 ml-4">
@@ -215,7 +215,7 @@
     <section id="developers" class="section-header mt-20 py-16 relative">
         <h2 class="section-title relative">Developers</h2>
         <div class="container w-2/4 mx-auto">
-            <div class="flex justify-around">
+            <div class="flex md:justify-around flex-col md:flex-row gap-y-6 md:gap-y-0">
                 <div class="card">
                     <h2 class="text-xl text-main-dark ">Ehab Hussein</h2>
                     <h4 class="text-xs text-main-dark font-semibold mb-3">Fullstack Web Developer</h4>
