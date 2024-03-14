@@ -76,9 +76,11 @@ section.section-header::before {
 
 .meal-image {
     background-image: url('../../assets/images/landing_page.jpg');
-    background-position: center 92%;
-    background-size: cover;
-    height: 35vh;
+    background-position: center center;
+    background-repeat: repeat;
+    background-size: 260px;
+    max-height: 100%;
+    height: 40vh;
     border-radius: 5px;
 }
 
@@ -113,6 +115,9 @@ section.section-header::before {
     @apply bg-sec-dark text-sec-extralight;
 }
 
-.meal-img {
-	width: 302px;
+.meal-img,
+.menu-img {
+    width: 100%;
+    min-height: 250px;
+    max-height: 250px;
 }
