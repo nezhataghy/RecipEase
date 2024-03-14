@@ -21,7 +21,7 @@ $(document).ready(function() {
             $('.food-grid').append(`
             <figure class="meal bg-white pt-5 pb-3 px-5 rounded-lg shadow-lg"">
                 <div class="layer">
-                    <a><img src="./assets/images/landing_page.jpg" alt="landing page" class="meal-img cursor-pointer rounded-lg" data-mealID="${meal.__id}"></a>
+                    <a><img src="${meal.image}" alt="landing page" class="meal-img cursor-pointer rounded-lg" data-mealID="${meal.__id}"></a>
                 </div>
                 <figcaption class="mt-2">
                     <h3 class="meal-name text-main-dark font-bold cursor-pointer text-xl ml-2" data-mealID="${meal.__id}">${meal.name}</h3>
@@ -32,7 +32,7 @@ $(document).ready(function() {
 
     const getFood = async function() {
         try {
-            const response = await fetch('http://0.0.0.0:5000/api/food');
+            const response = await fetch('http://recipease.me/api/food');
             if (response) {
                 data = await response.json();
                 const food = data.food;
@@ -62,7 +62,7 @@ $(document).ready(function() {
         <i class="test fa-solid fa-solid fa-utensils fa-fade text-sec-dark text-2xl mt-4"></i>`);
 
         try {
-            const response = await fetch(`http://127.0.0.1:5000/api/search_food/${meal_substr}`);
+            const response = await fetch(`http://recipease.me/api/search_food/${meal_substr}`);
             const result = await response.json();
             const food = result.food;
             if (!food) throw new Error('Nothing here!');

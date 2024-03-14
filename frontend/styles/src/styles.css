@@ -112,3 +112,7 @@ section.section-header::before {
 .soon:hover::before{
     @apply bg-sec-dark text-sec-extralight;
 }
+
+.meal-img {
+	width: 302px;
+}

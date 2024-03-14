@@ -19,7 +19,7 @@ $(document).ready(function() {
     const getFood = async function(category) {
         try {
             displayBuffer();
-            const response = await fetch(`http://127.0.0.1:5000/api/food/category/${category}`);
+            const response = await fetch(`http://recipease.me/api/food/category/${category}`);
             const food = await response.json();
             if (!food) throw new Error('Failed to fetch, Check your internet connection.xx');
             return food;
@@ -47,7 +47,7 @@ $(document).ready(function() {
             <div class="menu-meal">
                 <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4">
                     <h3 class="foodname relative z-10 after:font-thin after:text-main-dark sm:text-base">${meal.name}</h3>
-                    <img src="./assets/images/landing_page.jpg"
+                    <img src="${meal.image}"
                     class="menu-img"
                     data-mealID="${meal.__id}"/>
                 </div>
@@ -95,7 +95,7 @@ $(document).ready(function() {
             <div class="menu-meal">
                 <div class="foodname_img flex justify-between items-center relative overflow-hidden mt-4 ">
                 <h3 class="foodname relative z-10 after:font-thin after:text-main-dark">${meal.name}</h3>
-                <img src="./assets/images/landing_page.jpg"
+                <img src="${meal.image}"
                 class="menu-img"
                 data-mealID="${meal.__id}"/>
                 </div>

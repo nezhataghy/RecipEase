@@ -3,7 +3,7 @@ const paramId = urlParams.get('id');
 
 $(document).ready(function() {
     const getMeal = function() {
-        $.get(`http://127.0.0.1:5000/api/food/${paramId}`, function (data, status){  
+        $.get(`http://recipease.me/api/food/${paramId}`, function (data, status){  
             if (status == 'success') {
                 const meal = data.meal;
                 
