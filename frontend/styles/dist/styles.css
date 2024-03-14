@@ -1174,8 +1174,6 @@ header {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   opacity: 1;
-  min-height: 100px;
-  max-height: 100px;
 }
 
 @media (min-width: 768px){
@@ -1298,9 +1296,7 @@ section.section-header::before {
 }
 
 .meal-img {
-  width: 100%;
-  min-height: 250px;
-  max-height: 250px;
+  width: 302px;
 }
 
 .after\:font-thin::after{

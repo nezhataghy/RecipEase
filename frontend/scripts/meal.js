@@ -7,8 +7,7 @@ $(document).ready(function() {
             if (status == 'success') {
                 const meal = data.meal;
                
-		$('.meal-image').css('background-image', `'url(${meal.image})'`);
-		console.log($('.meal-image').css('background-image'));
+                $('.meal-image').css('background-image', `url("${meal.image}")`);
 
                 $('.details').append(`
                 <div class="meal-details">
