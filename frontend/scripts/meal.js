@@ -6,7 +6,10 @@ $(document).ready(function() {
         $.get(`http://recipease.me/api/food/${paramId}`, function (data, status){  
             if (status == 'success') {
                 const meal = data.meal;
-                
+               
+		$('.meal-image').css('background-image', `'url(${meal.image})'`);
+		console.log($('.meal-image').css('background-image'));
+
                 $('.details').append(`
                 <div class="meal-details">
                         <h2 class="meal-name mt-3 mb-6 font-bold text-sec-dark text-2xl text-center">${meal.name}</h2>

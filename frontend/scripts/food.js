@@ -21,7 +21,7 @@ $(document).ready(function() {
             $('.food-grid').append(`
             <figure class="meal bg-white pt-5 pb-3 px-5 rounded-lg shadow-lg"">
                 <div class="layer">
-                    <a><img src="${meal.image}" alt="landing page" class="meal-img cursor-pointer rounded-lg" data-mealID="${meal.__id}"></a>
+                    <a><img src="${meal.image}" alt="${meal.name}" class="meal-img cursor-pointer rounded-lg" data-mealID="${meal.__id}"></a>
                 </div>
                 <figcaption class="mt-2">
                     <h3 class="meal-name text-main-dark font-bold cursor-pointer text-xl ml-2" data-mealID="${meal.__id}">${meal.name}</h3>
